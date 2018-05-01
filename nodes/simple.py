@@ -1,5 +1,4 @@
 from math import *
-from audio import AudioGenerator
 
 def tri (phase) :
     PI = 3.14159
@@ -73,27 +72,9 @@ class Trigger_Out:
         f.close()
 
 
-class AudioGen:
-    def __init__(self):
-        self.time = 0
-        self.ag = AudioGenerator()
-        self.ag.start()
-
-    def setInputs (self, inputs):
-        self.inputs = inputs
-
-    def setOutputs (self, outputs):
-        self.outputs = outputs
-
-    def update(self, dt):
-        self.ag.f = float(self.inputs[0]["value"])
-        self.time += dt
-
-
 classes = {
     "const" : Const,
     "lfo" : Lfo,
     "cv_out" : CV_Out,
     "trigger_out" : Trigger_Out,
-    "audio_test_gen" : AudioGen
 }

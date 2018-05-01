@@ -8,13 +8,16 @@ canvas {
 body {
   width:1000px;
   height:1000px;
+  font-size: 12pt;
+  font-family: sans-serif;
 }
 
 .node {
-  background-color: #f00;
-  color:white;
+  *background-color: #f00;
+  border: 1px solid #000000;
+  color:black;
   position:absolute;
-  padding: 3px;
+  padding: 0.5rem;
 }
 
 .input {
@@ -35,24 +38,24 @@ input {
 }
 
 .menuContainer {
-  color:red;
+  *color:red;
 }
 
 .output {
   width : 10px;
   height : 20px;
   margin-top: 2px;
-  background-color: #000;
+  *background-color: #000;
 
 }
 
 .inputs {
-  background-color: #a88;
+  *background-color: #a88;
 }
 
 .usrInput {
   color:black;
-  background-color: #8f8;
+  background-color: pink;
 }
 
 .outputs {
@@ -65,6 +68,6 @@ input {
 
 
 #menu {
-  background-color: #000;
-  color:white;
+  *background-color: #000;
+  *color:white;
 }
