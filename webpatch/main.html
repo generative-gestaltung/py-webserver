@@ -123,8 +123,8 @@
         </div>
         <div class="menuEntry">
           patches
-        <select></select>
-        <button>load</button>
+        <select id="select_load"></select>
+        <button onclick="load()">load</button><button onclick="save()">save</button>
         </div>
 
       </div>
@@ -133,7 +133,7 @@
     </div>
 
 
-    <canvas id="myCanvas" width="1200" height="900"></canvas>
+    <canvas id="myCanvas" width="1700" height="900"></canvas>
 
     <script>
       init();

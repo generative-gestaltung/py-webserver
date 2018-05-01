@@ -3,25 +3,35 @@ var NODE_TYPES = {
     "inputs" : {
       "encoders":{
         name: "encoders",
-        inputs: [],
+        inputs: [
+          {name:"led0", type:"xxx"}, {name:"led1", type:"xxx"}, {name:"led2", type:"xxx"}, {name:"led3", type:"xxx"},
+          {name:"led4", type:"xxx"}, {name:"led5", type:"xxx"}, {name:"led6", type:"xxx"}, {name:"led7", type:"xxx"},
+          {name:"led8", type:"xxx"}, {name:"led9", type:"xxx"}, {name:"led10", type:"xxx"}, {name:"led11", type:"xxx"},
+          {name:"led12", type:"xxx"}, {name:"led13", type:"xxx"}, {name:"led14", type:"xxx"}, {name:"led15", type:"xxx"}
+        ],
         outputs: [
-          {name:"v0", type:"xxx"},
-          {name:"v1", type:"xxx"},
-          {name:"v2", type:"xxx"},
-          {name:"v3", type:"xxx"}
+          {name:"v0", type:"xxx"}, {name:"v1", type:"xxx"}, {name:"v2", type:"xxx"}, {name:"v3", type:"xxx"},
+          {name:"v4", type:"xxx"}, {name:"v5", type:"xxx"}, {name:"v6", type:"xxx"}, {name:"v7", type:"xxx"},
+          {name:"v8", type:"xxx"}, {name:"v9", type:"xxx"}, {name:"v10", type:"xxx"}, {name:"v11", type:"xxx"},
+          {name:"v12", type:"xxx"}, {name:"v13", type:"xxx"}, {name:"v14", type:"xxx"}, {name:"v15", type:"xxx"}
         ]
       },
-      "midi_in":{
-        name: "midi_in",
+      "button_in":{
+        name: "button_in",
         inputs: [],
-        outputs: []
-      }
+        outputs: [{name:"button0", type:"frt"}, {name:"button1", type:"frt"}, {name:"button2", type:"frt"}, {name:"button3", type:"frt"}]
+      },
+      "trigger_in":{
+        name: "trigger_in",
+        inputs: [],
+        outputs: [{name:"tr0", type:"frt"}, {name:"tr1", type:"frt"}, {name:"tr2", type:"frt"}, {name:"tr3", type:"frt"}]
+      },
     },
     "sources": {
       "lfo":{
         name: "lfo",
         inputs: [{name:"freq", type:"frt"}, {name:"reset", type:"trg"}],
-        outputs: [{name:"sin", type:"frt"}, {name:"tri", type:"frt"}, {name:"sq", type:"frt"}]
+        outputs: [{name:"sin", type:"frt"}, {name:"saw", type:"frt"}, {name:"ramp", type:"frt"}, {name:"sq", type:"frt"}]
       },
       "envelope":{
         name: "envelope",
@@ -41,6 +51,11 @@ var NODE_TYPES = {
       "noise":{
         name: "noise",
         inputs: [],
+        outputs: [{name:"out", type:"frt"}]
+      },
+      "counter":{
+        name: "counter",
+        inputs: [{name:"trigger", type:"frt"}, {name:"reset", type:"frt"}, {name:"max", type:"frt"}],
         outputs: [{name:"out", type:"frt"}]
       }
 
@@ -65,6 +80,30 @@ var NODE_TYPES = {
         name: "add",
         inputs: [{name:"in0", type:"frt"}, {name:"in1", type:"frt"}],
         outputs: [{name:"out", type:"frt"}]
+      },
+      "demultiplex":{
+        name: "demultiplex",
+        inputs: [{name:"in0", type:"frt"},{name:"in1", type:"frt"},{name:"in2", type:"frt"}, {name:"in3", type:"frt"},
+                 {name:"in4", type:"frt"},{name:"in5", type:"frt"},{name:"in6", type:"frt"}, {name:"in7", type:"frt"},
+                 {name:"in8", type:"frt"},{name:"in9", type:"frt"},{name:"in10", type:"frt"}, {name:"in11", type:"frt"},
+                 {name:"in12", type:"frt"},{name:"in13", type:"frt"},{name:"in14", type:"frt"}, {name:"in15", type:"frt"},
+                 {name:"select", type:"frt"}],
+        outputs: [{name:"out", type:"frt"}]
+      },
+      "demultiplex5":{
+        name: "demultiplex5",
+        inputs: [{name:"in0", type:"frt"},{name:"in1", type:"frt"},{name:"in2", type:"frt"}, {name:"in3", type:"frt"},
+                 {name:"in4", type:"frt"},{name:"select", type:"frt"}],
+        outputs: [{name:"out", type:"frt"}]
+      },
+      "multiplex":{
+        name: "multiplex",
+        inputs: [{name:"in0", type:"frt"},{name:"select", type:"frt"}],
+        outputs:[{name:"out0", type:"frt"},{name:"out1", type:"frt"},{name:"out2", type:"frt"}, {name:"out3", type:"frt"},
+                 {name:"out4", type:"frt"},{name:"out5", type:"frt"},{name:"out6", type:"frt"}, {name:"out7", type:"frt"},
+                 {name:"out8", type:"frt"},{name:"out9", type:"frt"},{name:"out10", type:"frt"}, {name:"out11", type:"frt"},
+                 {name:"out12", type:"frt"},{name:"out13", type:"frt"},{name:"out14", type:"frt"}, {name:"out15", type:"frt"},
+                ]
       }
     },
     "outputs" : {

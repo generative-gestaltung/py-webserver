@@ -146,7 +146,7 @@ function cancelEdge () {
 
 function updateCtx () {
 
-  context.clearRect(0,0,800,800);
+  context.clearRect(0,0,1600,1000);
   context.strokeStyle = "#00f";
   context.lineWidth = 2;
 

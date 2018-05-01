@@ -86,7 +86,7 @@ thread = Thread (target = start_http_server)
 thread.start()
 
 #thread1 = Thread (target = update_patch)
-Timer(0.1, updatePatch).start()
+#Timer(0.1, updatePatch).start()
 
 # Called for every client connecting (after handshake)
 def new_client(client, server):
@@ -113,12 +113,16 @@ def message_received(client, server, message):
 		file.write (json.dumps(PATCH))
 		file.close()
 
+	if MSG["cmd"] == "LOAD" :
+		print (MSG["data"])
+
+	'''
 	if MSG["cmd"] == "PATCH" :
 		PATCH = MSG["data"]
 		for key in PATCH["nodes"]:
 			if key not in PATCH_IMPL:
 				PATCH_IMPL[key] = classes[PATCH["nodes"][key]["name"]]()
-
+	'''
 
 
 server.set_fn_new_client(new_client)
