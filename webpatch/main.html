@@ -3,12 +3,10 @@
 
   <head>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="assets/fontawesome/fontawesome-all.css" rel="stylesheet">
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="node_types.js"></script>
     <script type="text/javascript" src="patch.js"></script>
     <script type="text/javascript" src="menu.js"></script>
-
     <script>
 
     var patch;
@@ -100,8 +98,41 @@
   <body id="body">
 
     <div id="patch" width="800" height="800"></div>
-    <div id="menu"></div>
-  <i class="fab fa-github-square"></i>
+
+    <div id="menu">
+      <div class="menuContainer">
+        <div class="menuEntry">
+          functions
+          <select id="select_sources"></select>
+          <button id="add_sources" onclick="addNode('sources')">add</button>
+        </div>
+        <div class="menuEntry">
+          operators
+          <select id="select_operators"></select>
+          <button id="add_operators" onclick="addNode('operators')">add</button>
+        </div>
+        <div class="menuEntry">
+          inputs
+        <select id="select_inputs"></select>
+        <button id="add_inputs" onclick="addNode('inputs')">add</button>
+        </div>
+        <div class="menuEntry">
+          outputs
+        <select id="select_outputs"></select>
+        <button id="add_outputs" onclick="addNode('outputs')">add</button>
+        </div>
+        <div class="menuEntry">
+          patches
+        <select></select>
+        <button>load</button>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
     <canvas id="myCanvas" width="1200" height="900"></canvas>
 
     <script>
