@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+		<!DOCTYPE HTML>
 <html>
 
   <head>
@@ -24,7 +24,7 @@
     var init_ws = function () {
 
       // Connect to Web Socket
-      ws = new WebSocket("ws://localhost:9001/");
+      ws = new WebSocket("ws://192.168.1.193:8888/ws");
 
       // Set event handlers.
       ws.onopen = function() {
@@ -54,10 +54,10 @@
     }
 
     function sendCmd (cmd, args) {
-      ws.send (JSON.stringify({
+      ws.send (cmd); /*JSON.stringify({
         cmd: cmd,
         data: args
-      }));
+      }));*/
     }
 
     var init = function() {
@@ -85,7 +85,7 @@
 
       if (cnt==0) {
         if (ws.readyState==1) {
-          sendPatch();
+          //sendPatch();
         }
       }
       cnt = (cnt+1)%100;
