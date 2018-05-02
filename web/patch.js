@@ -41,8 +41,8 @@ var Patch = function() {
 
 Patch.prototype.addNode = function (data) {
 
-  let newNode = new Node (NODE_ID, data);
-  this.nodes[NODE_ID] = newNode;
+  let newNode = new Node (data.name+NODE_ID, data);
+  this.nodes[data.name+NODE_ID] = newNode;
 
   return newNode;
 }
@@ -171,7 +171,6 @@ function updateCtx () {
 
   for (let ee in this.patch.edges) {
     let e = this.patch.edges[ee];
-
 
     let p0 = DOM_ELEMS.outputs[e.startNodeId][e.startPortId].getBoundingClientRect();
     let p1 = DOM_ELEMS.inputs[e.endNodeId][e.endPortId].getBoundingClientRect();
@@ -304,7 +303,7 @@ PatchRenderer.prototype.createNodeDom = function (node) {
   div.className = "node";
   div.id = node.id;
   div.setAttribute("draggable", true);
-  div.innerHTML = node.name;
+  div.innerHTML = node.id
 
   div.style.left = node.gui.x+"px";
   div.style.top = node.gui.y+"px";
