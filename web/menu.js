@@ -37,8 +37,8 @@ function save() {
 function load() {
   let req = new XMLHttpRequest();
   let sel = document.getElementById ("select_load");
-  //req.open("GET", "http://192.168.1.193:8888/web/"+sel.value+".txt", true);
-  req.open("GET", "http://localhost:8888/web/"+sel.value+".txt", true);
+  req.open("GET", "http://192.168.1.193:8888/web/"+sel.value+".txt", true);
+  //req.open("GET", "http://localhost:8888/web/"+sel.value+".txt", true);
   req.send();
   let cnt = 0;
   req.onreadystatechange = ()=> {
