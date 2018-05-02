@@ -157,15 +157,15 @@ function cancelEdge () {
 function updateCtx () {
 
   context.clearRect(0,0,1600,1000);
-  context.strokeStyle = "#00f";
-  context.lineWidth = 2;
+  context.strokeStyle = "#9d00ff";
+  context.lineWidth = 1;
 
   if (state.edgeTmp.started) {
     let p0 = state.edgeTmp.startDom.getBoundingClientRect();
     let p1 = state.edgeTmp.mousePos;
     context.beginPath();
-    context.moveTo (p0.x+5, p0.y+10);
-    context.lineTo (p1.x+5, p1.y+10);
+    context.moveTo (p0.x+6, p0.y+23);
+    context.lineTo (p1.x+6, p1.y+23);
     context.stroke();
   }
 
@@ -176,8 +176,8 @@ function updateCtx () {
     let p0 = DOM_ELEMS.outputs[e.startNodeId][e.startPortId].getBoundingClientRect();
     let p1 = DOM_ELEMS.inputs[e.endNodeId][e.endPortId].getBoundingClientRect();
     context.beginPath();
-    context.moveTo (p0.x+5, p0.y+10);
-    context.lineTo (p1.x+5, p1.y+10);
+    context.moveTo (p0.x+6, p0.y+23);
+    context.lineTo (p1.x+6, p1.y+23);
     context.stroke();
 
   }
@@ -304,7 +304,7 @@ PatchRenderer.prototype.createNodeDom = function (node) {
   div.className = "node";
   div.id = node.id;
   div.setAttribute("draggable", true);
-  div.innerHTML = node.name;
+  div.innerHTML = node.id;
 
   div.style.left = node.gui.x+"px";
   div.style.top = node.gui.y+"px";

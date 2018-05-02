@@ -2,135 +2,141 @@
 <html>
 
   <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/fontawesome-all.css">
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="node_types.js"></script>
     <script type="text/javascript" src="patch.js"></script>
     <script type="text/javascript" src="menu.js"></script>
+
     <script>
 
-    var patch;
-    var patchRenderer;
-    var menu;
-    var context;
-    var ws;
-    var time;
+      var patch;
+      var patchRenderer;
+      var menu;
+      var context;
+      var ws;
+      var time;
 
-    function log (x) {
-      console.log(x);
-    }
-
-
-    var init_ws = function () {
-
-      // Connect to Web Socket
-      //ws = new WebSocket("ws://192.168.1.193:8888/ws");
-			ws = new WebSocket("ws://localhost:8888/ws");
-
-      // Set event handlers.
-      ws.onopen = function() {
-
-      };
-
-      ws.onmessage = function(e) {
-        // e.data contains received string.
-
-      };
-
-      ws.onclose = function() {
-
-      };
-
-      ws.onerror = function(e) {
-        console.log(e)
-      };
-    }
-
-
-    function sendPatch() {
-      ws.send (JSON.stringify({
-        cmd: "PATCH",
-        data: patchRenderer.patch
-      }));
-    }
-
-    function sendCmd (cmd, args) {
-      ws.send (cmd+args); /*JSON.stringify({
-        cmd: cmd,
-        data: args
-      }));*/
-    }
-
-    var init = function() {
-
-      canvas = document.getElementById("myCanvas");
-      context = canvas.getContext('2d');
-      context.fillStyle = "#fff";
-
-      patch = new Patch();
-      patchRenderer = new PatchRenderer (patch);
-      menu = new Menu();
-
-      initEvents();
-    }
-
-    var cnt = 0;
-
-    var draw = function() {
-
-      let newTime = performance.now() / 1000.0;
-      let dt = newTime - time;
-      time = newTime;
-
-      patchRenderer.updateGui();
-
-      if (cnt==0) {
-        if (ws.readyState==1) {
-          //sendPatch();
-        }
+      function log (x) {
+        console.log(x);
       }
-      cnt = (cnt+1)%100;
-      requestAnimationFrame(draw);
-    };
+
+
+      var init_ws = function () {
+
+        // Connect to Web Socket
+        //ws = new WebSocket("ws://192.168.1.193:8888/ws");
+  			ws = new WebSocket("ws://localhost:8888/ws");
+
+        // Set event handlers.
+        ws.onopen = function() {
+
+        };
+
+        ws.onmessage = function(e) {
+          // e.data contains received string.
+
+        };
+
+        ws.onclose = function() {
+
+        };
+
+        ws.onerror = function(e) {
+          console.log(e)
+        };
+      }
+
+
+      function sendPatch() {
+        ws.send (JSON.stringify({
+          cmd: "PATCH",
+          data: patchRenderer.patch
+        }));
+      }
+
+      function sendCmd (cmd, args) {
+        ws.send (cmd+args); /*JSON.stringify({
+          cmd: cmd,
+          data: args
+        }));*/
+      }
+
+      var init = function() {
+
+        canvas = document.getElementById("myCanvas");
+        context = canvas.getContext('2d');
+        context.fillStyle = "#fff";
+
+        patch = new Patch();
+        patchRenderer = new PatchRenderer (patch);
+        menu = new Menu();
+
+        initEvents();
+      }
+
+      var cnt = 0;
+
+      var draw = function() {
+
+        let newTime = performance.now() / 1000.0;
+        let dt = newTime - time;
+        time = newTime;
+
+        patchRenderer.updateGui();
+
+        if (cnt==0) {
+          if (ws.readyState==1) {
+            //sendPatch();
+          }
+        }
+        cnt = (cnt+1)%100;
+        requestAnimationFrame(draw);
+      };
 
     </script>
   </head>
 
   <body id="body">
+    <div id="editor_header">
+      <div class="logo flex_left">
+        <img src="">
+      </div>
+      <div class="patch_select">
+        <select id="select_load"></select>
+        <a href="#" onclick="load()" class="fas fa-download" style="padding-left: 2rem"></a>
+        <a href="#" onclick="save()" class="fas fa-save" style="padding-left: 2rem"></a>
+      </div>
+      <div class="settings flex_right"><a href="#" class="fas fa-cog"></a></div>
+      <div class="help"><a href="#" class="fas fa-question-circle"></a></div>
+    </div>
 
-    <div id="patch" width="800" height="800"></div>
+    <div id="patch"></div>
 
     <div id="menu">
       <div class="menuContainer">
         <div class="menuEntry">
-          functions
+          <h3>functions</h3>
           <select id="select_sources"></select>
-          <button id="add_sources" onclick="addNode('sources')">add</button>
+          <button id="add_sources" class="btnAdd" onclick="addNode('sources')">add</button>
         </div>
         <div class="menuEntry">
-          operators
+          <h3>operators</h3>
           <select id="select_operators"></select>
-          <button id="add_operators" onclick="addNode('operators')">add</button>
+          <button id="add_operators" class="btnAdd" onclick="addNode('operators')">add</button>
         </div>
         <div class="menuEntry">
-          inputs
-        <select id="select_inputs"></select>
-        <button id="add_inputs" onclick="addNode('inputs')">add</button>
+          <h3>inputs</h3>
+          <select id="select_inputs"></select>
+          <button id="add_inputs" class="btnAdd" onclick="addNode('inputs')">add</button>
         </div>
         <div class="menuEntry">
-          outputs
-        <select id="select_outputs"></select>
-        <button id="add_outputs" onclick="addNode('outputs')">add</button>
+          <h3>outputs</h3>
+          <select id="select_outputs"></select>
+          <button id="add_outputs" class="btnAdd" onclick="addNode('outputs')">add</button>
         </div>
-        <div class="menuEntry">
-          patches
-        <select id="select_load"></select>
-        <button onclick="load()">load</button><button onclick="save()">save</button>
-        </div>
-
       </div>
-
-
     </div>
 
 

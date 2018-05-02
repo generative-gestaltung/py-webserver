@@ -6,25 +6,103 @@ canvas {
 }
 
 body {
-  width:1000px;
-  height:1000px;
+  *width:1000px;
+  *height:1000px;
   font-size: 12pt;
   font-family: sans-serif;
 }
 
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+
+select {
+  font-size: 1rem;
+  width: 75%;
+}
+
+input {
+  width:50%;
+}
+
+.btn, .btnAdd {
+    *background-color: #000000;
+    border: none;
+    *border-radius: 0.5rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    cursor: pointer;
+    width: 20%;
+}
+
+.btn {
+  margin-left: 1rem;
+}
+
+/* Darker background on mouse-over */
+.btn:hover, .btnAdd:hover {
+    background-color: #9d00ff;
+}
+
+#menu {
+
+}
+
+#patch {
+  display: flex; /* or inline-flex */
+  width: 100%;
+  position : absolute;
+}
+
+#editor_header {
+  display: flex;
+  justify-content: space-between;
+  height: 2rem;
+  background-color: #afafaf;
+}
+
+.logo {
+  float:left;
+  background-image: url("assets/img/logo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 3rem auto;
+}
+
+#patchName {
+  margin: auto;
+}
+
+.settings {
+float: right;}
+
+.help {
+float: right;}
+
+
+.container, .menuContainer { 
+  justify-content: center;
+  display: flex;
+}
+
+.menuEntry {
+  margin-left: 3rem;
+  width: 25%;
+  font-size: 1rem;
+}
+
 .node {
-  *background-color: #f00;
+  background-color: #fcfcfc;
   border: 1px solid #000000;
   color:black;
   position:absolute;
   padding: 0.5rem;
-}
-
-.input {
-  width : 10px;
-  height : 20px;
-  margin-top: 2px;
-  background-color: #000;
+  font-weight: bold;
 }
 
 .scope {
@@ -33,24 +111,7 @@ body {
   height : 50px;
 }
 
-input {
-  width:50%;
-}
-
 .menuContainer {
-  *color:red;
-}
-
-.output {
-  width : 10px;
-  height : 20px;
-  margin-top: 2px;
-  *background-color: #000;
-
-}
-
-.inputs {
-  *background-color: #a88;
 }
 
 .usrInput {
@@ -58,16 +119,21 @@ input {
   background-color: pink;
 }
 
+.inputs, .outputs {
+  font-weight: normal;
+}
+
+.inputs {
+  justify-content: flex-start;
+}
+
 .outputs {
-  background-color: #a8a;
+  justify-content: flex-end;
 }
 
-#patch {
-  position : absolute;
-}
-
-
-#menu {
-  *background-color: #000;
-  *color:white;
+.input, .output {
+  margin: auto;
+  width : 10px;
+  height : 10px;
+  padding: 1rem;
 }
