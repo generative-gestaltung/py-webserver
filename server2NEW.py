@@ -8,11 +8,11 @@ import threading
 
 def test (arg) :
     print ("start patch")
-    #os.system("sudo /home/maxg/dev/tmp/final/main "+arg)
+    os.system("sudo /home/maxg/dev/tmp/final/main "+arg)
 
 
-t = threading.Thread(target=test, args=["s"])
-t.start()
+#t = threading.Thread(target=test, args=["s"])
+#t.start()
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -28,31 +28,25 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
         if message[0] == "U":
             args = message[1:].split(",")
-            print(args)
+            #print(args)
             argsByte = []
             for i in range(0, len(args)):
                 argsByte.append(int(args[i]))
-            f = open ("xxx", "wb")
+            f = open ("/home/maxg/dev/tmp/final/xxx", "wb")
             f.write(bytes(argsByte))
             f.close()
 
         if message[0] == "L":
-            print (message[1])
-        #self.write_message("You said: " + message)
-        # os.system("sudo killall main")
-
-        #t = threading.Thread(target=test, args=[message])
-        #t.start()
-        #file = open("/home/maxg/dev/tmp/final/xxx", "w")
-        #file.write (message)
-        #file.close()
+            f = open ("/home/maxg/dev/tmp/final/yyy", "w")
+            f.write(message[1])
+            f.close()
 
     def on_close(self):
         print ('Connection was closed...')
 
 application = tornado.web.Application([
   (r'/ws', WSHandler),
-  (r"/web/(.*)",tornado.web.StaticFileHandler, {"path": "./web"},),
+  (r"/web/(.*)",tornado.web.StaticFileHandler, {"path": "/home/maxg/dev/py-webserver/web"},),
 ])
 
 if __name__ == "__main__":
