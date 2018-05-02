@@ -148,15 +148,23 @@ a:hover {
   flex-wrap: wrap;
   justify-content: space-between;
   *padding: 0.5rem;
-  font-weight: bold;
   min-width: 100px;
   border-radius: 0.5rem;
 }
 
+.nodeName {
+  width: 100%;
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
 .scope {
-  margin-top: 2px;
-  width : 50px;
-  height : 50px;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  background-color: #ececec;
+  width: 100%;
 }
 
 .menuContainer {
@@ -168,17 +176,18 @@ a:hover {
 
 .inputs, .outputs {
   font-size: 0.8rem;
-  padding-top: 2rem;
-  font-weight: normal;
-  width: 50%;
+  padding-top: 1rem;
+  width: 30%;
 }
 
 .inputs {
+  padding-left: 1rem;
   *text-align: left;
 }
 
 .outputs {
   *text-align: right;
+  padding-right: 1rem ;
 }
 
 .input, .output {

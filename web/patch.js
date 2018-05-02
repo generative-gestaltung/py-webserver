@@ -164,8 +164,8 @@ function updateCtx () {
     let p0 = state.edgeTmp.startDom.getBoundingClientRect();
     let p1 = state.edgeTmp.mousePos;
     context.beginPath();
-    context.moveTo (p0.x+6, p0.y+23);
-    context.lineTo (p1.x+6, p1.y+23);
+    context.moveTo (p0.x+7, p0.y+24);
+    context.lineTo (p1.x+7, p1.y+24);
     context.stroke();
   }
 
@@ -175,8 +175,8 @@ function updateCtx () {
     let p0 = DOM_ELEMS.outputs[e.startNodeId][e.startPortId].getBoundingClientRect();
     let p1 = DOM_ELEMS.inputs[e.endNodeId][e.endPortId].getBoundingClientRect();
     context.beginPath();
-    context.moveTo (p0.x+6, p0.y+23);
-    context.lineTo (p1.x+6, p1.y+23);
+    context.moveTo (p0.x+7, p0.y+24);
+    context.lineTo (p1.x+7, p1.y+24);
     context.stroke();
 
   }
@@ -304,15 +304,17 @@ PatchRenderer.prototype.createNodeDom = function (node) {
   div.id = node.id;
   div.setAttribute("draggable", true);
 
-  div.innerHTML = node.id;
-
+  let div2 = document.createElement("div");
+  div2.className = "nodeName";  
+  div2.innerHTML = node.id;
+  div.appendChild(div2);
   div.style.left = node.gui.x+"px";
   div.style.top = node.gui.y+"px";
 
 
   let inputs = document.createElement("div");
   inputs.className = "inputs";
-  inputs.style.width="100px";
+  //inputs.style.width="100px";
 
   let outputs = document.createElement("div");
   outputs.className = "outputs";
