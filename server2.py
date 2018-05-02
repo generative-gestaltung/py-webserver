@@ -10,8 +10,8 @@ def test (arg) :
    os.system("sudo /home/maxg/dev/tmp/final/main "+arg)
 
 
-t = threading.Thread(target=test, args=["s"])
-t.start()
+#t = threading.Thread(target=test, args=["s"])
+#t.start()
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -24,12 +24,13 @@ class WSHandler(tornado.websocket.WebSocketHandler):
     self.write_message("Welcome to my websocket!")
 
   def on_message(self, message):
-    print message
+    #print (int(message[1]))
+    print (message[2])
     #self.write_message("You said: " + message)
 
-    os.system("sudo killall main")
-    t = threading.Thread(target=test, args=[message])
-    t.start()
+    #os.system("sudo killall main")
+    #t = threading.Thread(target=test, args=[message])
+    #t.start()
     #file = open("/home/maxg/dev/tmp/final/xxx", "w")
     #file.write (message)
     #file.close()
@@ -46,4 +47,3 @@ if __name__ == "__main__":
   http_server = tornado.httpserver.HTTPServer(application)
   http_server.listen(8888)
   tornado.ioloop.IOLoop.instance().start()
-

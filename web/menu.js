@@ -37,15 +37,17 @@ function save() {
 function load() {
   let req = new XMLHttpRequest();
   let sel = document.getElementById ("select_load");
-  req.open("GET", "http://192.168.1.193:8888/web/"+sel.value+".txt", true);
+  //req.open("GET", "http://192.168.1.193:8888/web/"+sel.value+".txt", true);
+  req.open("GET", "http://localhost:8888/web/"+sel.value+".txt", true);
   req.send();
   let cnt = 0;
   req.onreadystatechange = ()=> {
     try {
       if (cnt==0) {
-        let p = JSON.parse(req.responseText);
-        patchRenderer.createPatch(p);
-        sendCmd (sel.value) //"LOAD", sel.value+".txt");
+        patch = JSON.parse(req.responseText);
+        patchRenderer.createPatch(patch);
+        sendCmd ("L", sel.value) //"LOAD", sel.value+".txt");
+        nodesEngineSend();
       }
       cnt += 1;
     }

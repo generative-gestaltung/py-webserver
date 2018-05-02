@@ -23,6 +23,16 @@ var state = {
 }
 
 
+function nodesEngineSend() {
+  dat = []
+  for (let n of patch.nodesEngine) {
+    //log(n+" "+patch.nodes[n]);
+    dat.push(n)
+    dat.push(parseInt(patch.nodes[n].inputs[0].value))
+  }
+  sendCmd("U",dat);
+}
+
 var Patch = function() {
   this.nodes = {};
   this.edges = {};
@@ -213,6 +223,8 @@ PatchRenderer.prototype.createUsrInputDom = function (id, input) {
 
     let node = patch.nodes[nodeID];
     node.inputs[portID].value = divInput.value;
+
+    nodesEngineSend();
   }
   i.appendChild(divInput);
   divInput.value = input.value;
@@ -256,10 +268,19 @@ PatchRenderer.prototype.createOutputDomGuiTxt = function (id, output) {
 
 PatchRenderer.prototype.createPatch = function (patch) {
 
+  patch = patch
   this.patch.nodes = patch.nodes;
   this.patch.edges = patch.edges;
 
-  log (patch);
+  DOM_ELEMS.nodes = {}
+  DOM_ELEMS.outputs = {}
+  DOM_ELEMS.intputs = {}
+
+  var myNode = document.getElementById("patch");
+  log(myNode)
+  while (myNode.firstChild) {
+      myNode.removeChild(myNode.firstChild);
+  }
 
   NODE_ID = 0;
   EDGE_ID = 0;
@@ -269,7 +290,6 @@ PatchRenderer.prototype.createPatch = function (patch) {
       NODE_ID = this.patch.nodes[n].id;
     this.createNodeDom (this.patch.nodes[n]);
   }
-
 }
 
 
