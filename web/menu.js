@@ -2,7 +2,7 @@ function log (x) {
   console.log(x);
 }
 
-var PATCHES = ["seq", "lfo"];
+var PATCHES = ["lfo_noise", "seq_clock_div", "seq_16_step"];
 
 var Menu = function() {
 
@@ -37,8 +37,8 @@ function save() {
 function load() {
   let req = new XMLHttpRequest();
   let sel = document.getElementById ("select_load");
-  //req.open("GET", "http://192.168.1.193:8888/web/"+sel.value+".txt", true);
-  req.open("GET", "http://localhost:8888/web/"+sel.value+".txt", true);
+  req.open("GET", "http://192.168.1.193:8888/web/"+sel.value+".txt", true);
+  //req.open("GET", "http://localhost:8888/web/"+sel.value+".txt", true);
   req.send();
   let cnt = 0;
   req.onreadystatechange = ()=> {
@@ -46,7 +46,17 @@ function load() {
       if (cnt==0) {
         patch = JSON.parse(req.responseText);
         patchRenderer.createPatch(patch);
-        sendCmd ("L", sel.value) //"LOAD", sel.value+".txt");
+
+	let pp = "A";
+
+	if (sel.value=="lfo_noise")
+		pp = 'A';
+	if (sel.value=="seq_clock_div")
+		pp = 'B';
+	if (sel.value=="seq_16_step")
+		pp = 'C';
+
+        sendCmd ("L", pp) //"LOAD", sel.value+".txt");
         nodesEngineSend();
       }
       cnt += 1;

@@ -76,6 +76,11 @@ var NODE_TYPES = {
         inputs: [{name:"in", type:"frt"}, {name:"scale", type:"frt"}],
         outputs: [{name:"out", type:"frt"}]
       },
+      "clockdivider":{
+        name: "clockdivider",
+        inputs: [{name:"in", type:"frt"}, {name:"divide", type:"frt"}],
+        outputs: [{name:"out", type:"frt"}]
+      },
       "add":{
         name: "add",
         inputs: [{name:"in0", type:"frt"}, {name:"in1", type:"frt"}],
@@ -87,6 +92,12 @@ var NODE_TYPES = {
                  {name:"in4", type:"frt"},{name:"in5", type:"frt"},{name:"in6", type:"frt"}, {name:"in7", type:"frt"},
                  {name:"in8", type:"frt"},{name:"in9", type:"frt"},{name:"in10", type:"frt"}, {name:"in11", type:"frt"},
                  {name:"in12", type:"frt"},{name:"in13", type:"frt"},{name:"in14", type:"frt"}, {name:"in15", type:"frt"},
+                 {name:"select", type:"frt"}],
+        outputs: [{name:"out", type:"frt"}]
+      },
+      "demultiplex4":{
+        name: "demultiplex4",
+        inputs: [{name:"in0", type:"frt"},{name:"in1", type:"frt"},{name:"in2", type:"frt"}, {name:"in3", type:"frt"},
                  {name:"select", type:"frt"}],
         outputs: [{name:"out", type:"frt"}]
       },

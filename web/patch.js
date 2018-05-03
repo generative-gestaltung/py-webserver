@@ -26,12 +26,12 @@ var state = {
 function nodesEngineSend() {
   dat = []
   for (let n of patch.nodesEngine) {
-    //log(n+" "+patch.nodes[n]);
-    dat.push(n)
-    dat.push(parseInt(patch.nodes[n].inputs[0].value))
+    dat.push (n)
+    dat.push (parseInt(patch.nodes["const"+n].inputs[0].value))
   }
   sendCmd("U",dat);
 }
+
 
 var Patch = function() {
   this.nodes = {};
@@ -156,7 +156,7 @@ function cancelEdge () {
 
 function updateCtx () {
 
-  context.clearRect(0,0,1600,1000);
+  context.clearRect(0,0,2000,1600);
   context.strokeStyle = "#9d00ff";
   context.lineWidth = 1;
 
